@@ -2,6 +2,14 @@ package com.Asad.url_shortner.model;
 
 // This line declares that our class belongs to the 'model' package.
 // This helps in organizing our project, separating data models from controllers, services, etc.
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
+import java.time.LocalDateTime;
+
 /**
  * This class represents the core data model for our URL Shortener. It is a POJO
  * (Plain Old Java Object), which means it's a simple object not bound by any
@@ -15,8 +23,18 @@ package com.Asad.url_shortner.model;
  * to transform this simple POJO into a powerful JPA Entity that Spring Data
  * can manage and persist to the database automatically.
  */
+
+@Entity
 public class UrlMapping {
     // This class is currently empty. We will add fields to it in the next tasks,
     // such as 'id', 'originalUrl', and 'shortCode', which will become the
     // columns of our database table.
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private String Og_URL;
+    private String Short_Url;
+    private LocalDateTime creation_time;
+    private long clicks;
 }
