@@ -3,11 +3,7 @@ package com.Asad.url_shortner.model;
 // This line declares that our class belongs to the 'model' package.
 // This helps in organizing our project, separating data models from controllers, services, etc.
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-
+import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
 /**
@@ -33,8 +29,15 @@ public class UrlMapping {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Lob
     private String Og_URL;
-    private String Short_Url;
+
+
+    @Column(unique = true)
+    private String shortcode;
+
+
     private LocalDateTime creation_time;
     private long clicks;
 }
