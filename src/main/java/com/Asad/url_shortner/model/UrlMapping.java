@@ -4,6 +4,10 @@ package com.Asad.url_shortner.model;
 // This helps in organizing our project, separating data models from controllers, services, etc.
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import java.time.LocalDateTime;
 
 /**
@@ -20,6 +24,9 @@ import java.time.LocalDateTime;
  * can manage and persist to the database automatically.
  */
 
+@Getter
+@Setter
+@NoArgsConstructor
 @Entity
 public class UrlMapping {
     // This class is currently empty. We will add fields to it in the next tasks,
@@ -30,7 +37,9 @@ public class UrlMapping {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+
     @Lob
+    @Column(nullable = false)
     private String Og_URL;
 
 
@@ -39,5 +48,8 @@ public class UrlMapping {
 
 
     private LocalDateTime creation_time;
+
+
+
     private long clicks;
 }
