@@ -8,10 +8,7 @@ import com.Asad.url_shortner.service.UrlShortnerService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * This class will serve as the REST Controller for all URL-related operations.
@@ -47,6 +44,12 @@ public class UrlController {
         ShortenUrlResponse response = new ShortenUrlResponse(fullShortUrl);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
+    }
+
+    @GetMapping("/{shortcode}")
+    public ResponseEntity<Void> redirect(@PathVariable String shortcode) {
+
+        return  null;
     }
 
 }
