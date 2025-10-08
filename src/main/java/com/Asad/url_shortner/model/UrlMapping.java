@@ -29,9 +29,6 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Entity
 public class UrlMapping {
-    // This class is currently empty. We will add fields to it in the next tasks,
-    // such as 'id', 'originalUrl', and 'shortCode', which will become the
-    // columns of our database table.
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

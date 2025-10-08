@@ -1,6 +1,7 @@
 package com.Asad.url_shortner.service;
 
 
+import com.Asad.url_shortner.Exception.UrlNotFoundException;
 import com.Asad.url_shortner.Repository.UrlMappingRepository;
 import com.Asad.url_shortner.model.UrlMapping;
 import jakarta.persistence.Id;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.Base64;
+import java.util.Optional;
 
 @Service
 public class UrlShortnerService {
@@ -39,6 +41,22 @@ public class UrlShortnerService {
 
         return shortcode;
     }
+
+    @Transactional
+    public String getOgUrlAndIncrementClicks (String shortcode) {
+
+
+        UrlMapping urlMapping = UrlMappingRepository.findByShortCode(shortcode)
+                .orElseThrow(() -> new UrlNotFoundException("URL not found for shortcode : " + shortcode));
+
+
+            urlMapping.setClicks(urlMapping.getClicks() + 1);
+
+            UrlMappingRepository.save(urlMapping);
+
+            return urlMapping.getOg_URL();
+        }
+
 
     private String encodeBase62 (Long number) {
 
